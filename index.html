@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- npx tailwindcss -i ./main.css -o ./style.css --watch -->
+    <link rel="stylesheet" href="./style.css">
+
+    <style>
+        /* Chrome */
+        @media screen and (-webkit-min-device-pixel-ratio:0) {
+            input[type="range"] {
+                appearance: none;
+                width: 12rem;
+                height: 1rem;
+                border-radius: 0.5rem;
+                margin-top: 0.5rem;
+                outline: none;
+                cursor: pointer;
+                background-color: rgb(103 232 249);
+                background-image: linear-gradient( rgb(253, 71, 71), rgb(253, 71, 71));
+                background-repeat: no-repeat;
+                box-shadow: -2px -2px 3px 0px rgba(0, 0, 0, 0.38) inset;
+            }
+
+            input[type="range"]::-webkit-slider-thumb {
+                -webkit-appearance: none;
+
+                -webkit-border-radius: 50%;
+                height: 1.5rem;
+                width: 1.5rem;
+                border-radius: 50%;
+                background-color: rgb(253 224 71);
+                cursor: pointer;
+                box-shadow: -2px -4px 4px 0px rgba(0, 0, 0, 0.48) inset;
+                transition: all 50ms ease-in;
+                /* border: 1px solid rgb(6, 6, 6); */
+            }
+
+            .slider::-webkit-slider-thumb:hover {
+                outline: 2px solid rgb(253, 71, 71);
+                /* background-color: rgb(103 232 249); */
+                /* box-shadow: 0px 0px 25px 5px rgba(255, 229, 61, 0.80); */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrapper h-screen w-screen grid place-items-center font-poppins bg-yellow-50">
+
+        <div
+            class="main bg-sky-700 rounded-xl h-[39rem]  w-96 px-4 py-8 flex flex-col items-center shadow-[inset_-4px_-4px_8.0px_0.0px_rgba(0,0,0,0.38)]">
+
+            <!-- Heading -->
+            <h1 class="text-2xl font-bold text-cyan-300 ">PASSWORD <span class="text-white">GENERATOR</span></h1>
+
+            <!-- Output Window  -->
+            <div class="output w-full relative">
+                <input readonly placeholder="Password"
+                    class="w-full h-14 bg-white rounded-lg my-4 px-4 shadow-[inset_-4px_-4px_8.0px_0.0px_rgba(0,0,0,0.38)]"
+                    data-passwordDisplay>
+                <button class="absolute z-20 w-6 aspect-square top-8 right-4 " data-copy>
+
+                    <!-- copy button  -->
+                    <span
+                        class="absolute -top-10 -right-7 rounded-2xl px-4 py-1 shadow-[inset_-4px_-4px_8.0px_0.0px_rgba(0,0,0,0.38)] after:absolute after:-z-10 after:h-4 after:w-4 after:top-5 after:right-8 after:rotate-45 after:shadow-[inset_-6px_-6px_12.0px_0.0px_rgba(0,0,0,0.38)] hidden"
+                        data-copyMessage>copied</span>
+
+                        <svg width='1.5rem' viewBox='0 0 24 24' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'><title>copy_2_line</title><g id='页面-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g id='File' transform='translate(-96.000000, -288.000000)'><g id='copy_2_line' transform='translate(96.000000, 288.000000)'><path d='M24,0 L24,24 L0,24 L0,0 L24,0 Z M12.5934901,23.257841 L12.5819402,23.2595131 L12.5108777,23.2950439 L12.4918791,23.2987469 L12.4918791,23.2987469 L12.4767152,23.2950439 L12.4056548,23.2595131 C12.3958229,23.2563662 12.3870493,23.2590235 12.3821421,23.2649074 L12.3780323,23.275831 L12.360941,23.7031097 L12.3658947,23.7234994 L12.3769048,23.7357139 L12.4804777,23.8096931 L12.4953491,23.8136134 L12.4953491,23.8136134 L12.5071152,23.8096931 L12.6106902,23.7357139 L12.6232938,23.7196733 L12.6232938,23.7196733 L12.6266527,23.7031097 L12.609561,23.275831 C12.6075724,23.2657013 12.6010112,23.2592993 12.5934901,23.257841 L12.5934901,23.257841 Z M12.8583906,23.1452862 L12.8445485,23.1473072 L12.6598443,23.2396597 L12.6498822,23.2499052 L12.6498822,23.2499052 L12.6471943,23.2611114 L12.6650943,23.6906389 L12.6699349,23.7034178 L12.6699349,23.7034178 L12.678386,23.7104931 L12.8793402,23.8032389 C12.8914285,23.8068999 12.9022333,23.8029875 12.9078286,23.7952264 L12.9118235,23.7811639 L12.8776777,23.1665331 C12.8752882,23.1545897 12.8674102,23.1470016 12.8583906,23.1452862 L12.8583906,23.1452862 Z M12.1430473,23.1473072 C12.1332178,23.1423925 12.1221763,23.1452606 12.1156365,23.1525954 L12.1099173,23.1665331 L12.0757714,23.7811639 C12.0751323,23.7926639 12.0828099,23.8018602 12.0926481,23.8045676 L12.108256,23.8032389 L12.3092106,23.7104931 L12.3186497,23.7024347 L12.3186497,23.7024347 L12.3225043,23.6906389 L12.340401,23.2611114 L12.337245,23.2485176 L12.337245,23.2485176 L12.3277531,23.2396597 L12.1430473,23.1473072 Z' id='MingCute' fill-rule='nonzero'></path><path d='M9,2 C7.89543,2 7,2.89543 7,4 L7,6 L9,6 L9,4 L20,4 L20,15 L18,15 L18,17 L20,17 C21.1046,17 22,16.1046 22,15 L22,4 C22,2.89543 21.1046,2 20,2 L9,2 Z M4,7 C2.89543,7 2,7.89543 2,9 L2,20 C2,21.1046 2.89543,22 4,22 L15,22 C16.1046,22 17,21.1046 17,20 L17,9 C17,7.89543 16.1046,7 15,7 L4,7 Z M4,9 L15,9 L15,20 L4,20 L4,9 Z' id='形状' fill='#67E8F9' ></path></g></g></g></svg>
+                    
+                </button>
+                </input>
+
+            </div>
+
+
+            <!-- Input Window  -->
+            <div class="relative w-full flex flex-col items-center">
+                <div
+                    class="circle relative w-52 aspect-square bg-yellow-300 rounded-full before:w-[90%] before:h-[90%] before:bg-sky-700 before:rounded-full before:absolute before:top-[5%] before:left-[5%] after:w-[110%] after:h-2/4 after:bg-sky-700 after:absolute after:top-[50%] after:left-[-5%]">
+                    <div
+                        class="absolute h-[5%] w-[5%] bg-yellow-300 rounded-b-2xl z-10 top-[50%] shadow-[inset_0px_-4px_2.0px_-2.0px_rgba(0,0,0,0.38)]">
+                    </div>
+                    <div
+                        class="absolute h-[5%] w-[5%] bg-yellow-300 rounded-b-2xl z-10 top-[50%] right-0 shadow-[inset_0px_-4px_2.0px_-2.0px_rgba(0,0,0,0.38)]">
+                    </div>
+                    <!-- <div class="dot absolute h-[8%] w-[8%] bg-black rounded-full z-10 top-[50%] left-[-1%]"></div> -->
+                </div>
+                <div
+                    class="absolute top-[12%] aspect-square w-40 bg-yellow-300 bg-gradient-to-b rounded-full flex flex-col items-center justify-center shadow-[inset_-6px_-6px_12.0px_0.0px_rgba(0,0,0,0.38)]">
+                    <h2 class="text-5xl font-semibold" data-lengthNumber>26</h2>
+                    <p class="">Password Length</p>
+                </div>
+            </div>
+
+            <!-- Input Slider  -->
+            <input type="range" min="0" max="26" step="1" class="slider appearance-none h-4 w-80 " data-lengthSlider>   
+
+            <!-- Include boxes  -->
+            <div class="h-20 w-full grid grid-cols-4 grid-rows-1 gap-2 m-4 text-center">
+                <input type="checkbox" id="uppercase" class="hidden">
+                <label for="uppercase">
+                    <div
+                        class="boxes bg-cyan-300 flex items-center justify-center rounded-2xl p-2 leading-tight shadow-[inset_-4px_-4px_8.0px_0.0px_rgba(0,0,0,0.38)] hover:bg-yellow-300 hover:scale-105 transition-all duration-200 cursor-pointer">
+                        Include <br> ABCD..</div>
+                </label>
+                <input type="checkbox" id="lowercase" class="hidden">
+                <label for="lowercase">
+                    <div
+                        class="boxes bg-cyan-300 flex items-center justify-center rounded-2xl p-2 leading-tight shadow-[inset_-4px_-4px_8.0px_0.0px_rgba(0,0,0,0.38)] hover:bg-yellow-300 hover:scale-105 transition-all duration-200 cursor-pointer">
+                        Include <br> abcd..</div>
+                </label>
+                <input type="checkbox" id="numeric" class="hidden">
+                <label for="numeric">
+                    <div
+                        class="boxes bg-cyan-300 flex items-center justify-center rounded-2xl p-2 leading-tight shadow-[inset_-4px_-4px_8.0px_0.0px_rgba(0,0,0,0.38)] hover:bg-yellow-300 hover:scale-105 transition-all duration-200 cursor-pointer">
+                        Include <br> 1234..</div>
+                </label>
+                <input type="checkbox" id="symbol" class="hidden">
+                <label for="symbol">
+                    <div
+                        class="boxes bg-cyan-300 flex items-center justify-center rounded-2xl p-2 leading-tight shadow-[inset_-4px_-4px_8.0px_0.0px_rgba(0,0,0,0.38)] hover:bg-yellow-300 hover:scale-105 transition-all duration-200 cursor-pointer">
+                        Include <br> @$#&..</div>
+                </label>
+            </div>
+
+            <!-- Strength calculate  -->
+            <div
+                class="flex justify-between items-center gap-x-52  p-3 px-4 rounded-2xl shadow-[inset_-4px_-4px_8.0px_0.0px_rgba(0,0,0,0.38)] bg-white">
+                <p class="font-semibold text-lg">Stength</p>
+                <div data-indicator class="relative h-6 w-6 rounded-full shadow-[inset_-4px_-4px_8.0px_0.0px_rgba(0,0,0,0.38)] "><span
+                        class="absolute right-8 whitespace-nowrap font-semibold text-center"></span></div>
+            </div>
+
+            <!-- Generate button  -->
+            <a href="">
+                <button
+                    class="h-12 w-48 bg-yellow-300 px-4 rounded-2xl mt-4 shadow-[inset_-4px_-4px_8.0px_0.0px_rgba(0,0,0,0.38)] hover:scale-105 hover:bg-cyan-300 transition-all duration-200 "
+                    id="generate-btn">
+                    Generate Password
+                </button>
+            </a>
+        </div>
+    </div>
+
+    </div>
+
+    <script src="./script.js"></script>
+
+</body>
+
+</html>
